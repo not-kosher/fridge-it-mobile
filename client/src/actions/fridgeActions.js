@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from './axiosInstance';
 
 //functions to get fridges and add fridges on front end 
 //uses reducers as part of promises to change state

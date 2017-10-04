@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from './axiosInstance';
 
 //functions to get items and add items on front end 
 //uses reducers as part of promises to change state
