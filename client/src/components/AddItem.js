@@ -24,31 +24,23 @@ class AddItem extends React.Component {
   render () {
     return ( 
       <View>
-        <View>
-          <Text>Test input</Text>
-          <Field name='testinput' component={CustomTextInput} placeholder='test' />
-        </View>
+        <Field name='testinput' component={CustomTextInput} placeholder='test' />
+        <Field name='numinput' component={CustomTextInput} placeholder='num' keyboardType = 'numeric' />
         <View>
           <Text>Test dropdown</Text>
-          <Field name='dropdown' component={CustomPicker} mode='dropdown'>
+          <Field name='dropdown' component={CustomPicker} mode='dropdown' iosHeader='Select' >
             <Picker.Item label='hi' value='hi' />
             <Picker.Item label='bye' value='bye' />
             <Picker.Item label="30 Years" value="30" />
           </Field>
         </View>
-        <View>
-          <Text>{'Here is your input: ' + this.props.testinput}</Text>
-          <Text>{'Here is your selection: ' + this.props.dropdown}</Text>
-        </View>
-        <View>
-          <Button
-            onPress={(values) => {
-              this.props.handleSubmit(values);
-              this.testing(values);
-              }}
-            title='Submit' 
-          />
-        </View>
+        <Button
+          onPress={(values) => {
+            this.props.handleSubmit(values);
+            this.testing(values);
+            }}
+          title='Submit' 
+        />
       </View>
     )
   }
