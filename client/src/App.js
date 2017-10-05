@@ -15,7 +15,7 @@ class App extends React.Component {
   render () {
     let lang = 'js';
     return (
-      <View>
+      <View style={{flex: 1}}>
         <AddItem />
       </View>
     )

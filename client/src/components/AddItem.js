@@ -5,7 +5,7 @@ import {
   View,
   Text,
   TextInput,
-  Button,
+  TouchableHighlight,
   Picker,
 } from 'react-native'
 import { Field, reduxForm, formValueSelector, Item } from 'redux-form'
@@ -35,44 +35,132 @@ class AddItem extends React.Component {
 
   render() {
     return ( 
-      <View>
-        <View>
-          <Text>Add a new item</Text>
+      <View style={styles.formView}>
+        <View style={styles.title}>
+          <Text style={styles.titleText}>Add a new item</Text>
         </View>
-        <View>
-          <Field 
-            name='itemName' 
-            placeholder='Name of the item' 
-            autoCapitalize='none'
-            component={CustomTextInput} 
-          />
-          <Field 
-            name='itemAmount' 
-            placeholder='Amount' 
-            keyboardType = 'numeric'
-            component={CustomTextInput} 
-          />
-          <View>
-            <Text>Select a category</Text>
-            <Field 
-              name='category'
-              component={CustomPicker} 
-            >
-              <Picker.Item label='Produce' value='produce' />
-              <Picker.Item label='Dairy' value='dairy' />
-              <Picker.Item label='Frozen' value='frozen' />
-              <Picker.Item label='Grains and Starches' value='grains' />
-              <Picker.Item label='Frozen' value='frozen' />
-              <Picker.Item label='Miscellaneous' value='misc' />
-            </Field>
+        <View style={styles.formContainer}>
+          <View style={styles.inputContainer}>
+            <View style={styles.borderView}>
+              <Field 
+                name='itemName' 
+                placeholder='Name of the item' 
+                autoCapitalize='none'
+                component={CustomTextInput}
+                style={styles.inputField}
+              />
+            </View>
           </View>
-          <Button
-            onPress={this.handleSubmit}
-            title='Submit' 
-          />
+          <View style={styles.inputContainer}>
+            <View style={styles.borderView}>
+              <Field 
+                name='itemAmount' 
+                placeholder='Amount' 
+                keyboardType = 'numeric'
+                component={CustomTextInput} 
+                style={styles.inputField}
+              />
+            </View>
+          </View>
+          <View style={styles.pickerContainer}>
+            <View style={styles.pickerTitle}>
+              <Text style={styles.pickerTitleText}>Select a category</Text>
+            </View>
+            <View style={styles.pickerView}>
+              <Field 
+                name='category'
+                component={CustomPicker}
+              >
+                <Picker.Item label='Produce' value='produce' />
+                <Picker.Item label='Dairy' value='dairy' />
+                <Picker.Item label='Protein' value='protein' />
+                <Picker.Item label='Grains and Starches' value='grains' />
+                <Picker.Item label='Frozen' value='frozen' />
+                <Picker.Item label='Miscellaneous' value='misc' />
+              </Field>
+            </View>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableHighlight onPress={this.handleSubmit}>
+              <View style={styles.button}>
+                <Text style={styles.buttonText}>Submit</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     )
+  }
+}
+
+const styles = {
+  formView: {
+    flex: 1, 
+    backgroundColor:'steelblue'
+  },
+  title: {
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'flex-end',
+    paddingBottom: 30
+  },
+  formContainer: {
+    flex: 4, 
+    justifyContent: 'space-around'
+  },
+  inputContainer: {
+    flex: 1.5,
+  }, 
+  pickerContainer: {
+    flex: 5
+  },
+  pickerTitle: {
+    flex: 1, 
+    justifyContent: 'flex-end', 
+    alignItems: 'center', 
+  }, 
+  pickerView: {
+    flex: 5,
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+    flex: 2, 
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  borderView: {
+    height: 50, 
+    width: 250,
+    alignSelf: 'center', 
+    borderWidth: 2,
+    borderColor: '#00000030',
+    backgroundColor: '#ffffff80'
+  }, 
+  inputField: {
+    flex: 1, 
+    alignSelf: 'stretch', 
+    padding: 5
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#00000090'
+  },
+  pickerTitleText: {
+    fontSize: 18,
+    color: '#00000090'
+  },
+  button: {
+    marginBottom: 30,
+    width: 180,
+    alignItems: 'center',
+    backgroundColor: '#4c4c4c40'
+  },
+  buttonText: {
+    padding: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#ffffff95'
   }
 }
 
