@@ -22,7 +22,7 @@ export const googleLogin = () => {
 };
 
 // Email log in function. Stores relevant info onto the localStorage object.
-export const emailLogin = (email, pw) => {
+export const emailLogin = (email, pw, cb) => {
   return function(dispatch) {
     firebase.auth().signInWithEmailAndPassword(email, pw)
       .then(result => {
@@ -31,10 +31,13 @@ export const emailLogin = (email, pw) => {
           username: result.email,
           userId: result.uid
         }});
+
+        cb(null, result.email);
       })
       .catch((error) => {
         // alert(errorMsgs[error.message]);        
         dispatch({type: 'USER_LOGIN_REJECTED', payload: error.message});
+        cb(error.message);
     });
   };
 };
@@ -60,7 +63,7 @@ export const emailLogin = (email, pw) => {
 // };
 
 // Email sign up function. Stores relevant info onto the localStorage object.
-export const emailSignUp = (email, pw) => {
+export const emailSignUp = (email, pw, cb) => {
   return function(dispatch) {    
     firebase.auth().createUserWithEmailAndPassword(email, pw)
       .then(result => {
@@ -69,10 +72,13 @@ export const emailSignUp = (email, pw) => {
           username: result.email,
           userId: result.uid
         }});
+
+        cb(null, result.email);
       })
       .catch(function(error) {
         // alert(error.message);        
         dispatch({type: 'USER_LOGIN_REJECTED', payload: error.message});
+        cb(error.message);
       });
   };
 };
