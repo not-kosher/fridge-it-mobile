@@ -15,12 +15,11 @@ class App extends React.Component {
   handleSubmit(values) {
     console.log('help me', values);
   }
-  
+
   render () {
     return (
       <View>
         <Text>This is App</Text>
-        <AddItem onSubmit={this.handleSubmit} />
       </View>
     )
   }
