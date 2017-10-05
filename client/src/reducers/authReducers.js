@@ -19,7 +19,8 @@ const authReducer = (state=initialState, action) => {
     }
 
     case 'USER_LOGIN_FULFILLED': {
-      return Object.assign({}, state, {loggingIn: false, loggedIn: true, username: action.payload});
+      //action.payload will set the username and userId
+      return Object.assign({}, state, {loggingIn: false, loggedIn: true}, action.payload);
     }
 
     case 'USER_LOGOUT_FULFILLED': {
