@@ -6,9 +6,9 @@ import {
   Text,
   TextInput,
   Button,
-  Item,
+  Picker,
 } from 'react-native'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { Field, reduxForm, formValueSelector, Item } from 'redux-form'
 
 import * as itemActions from '../actions/itemActions';
 import CustomTextInput from './CustomTextInput';
@@ -31,12 +31,14 @@ class AddItem extends React.Component {
         <View>
           <Text>Test dropdown</Text>
           <Field name='dropdown' component={CustomPicker} mode='dropdown'>
-            <Item label='hi' value='hi' />
-            <Item label='bye' value='bye' />
+            <Picker.Item label='hi' value='hi' />
+            <Picker.Item label='bye' value='bye' />
+            <Picker.Item label="30 Years" value="30" />
           </Field>
         </View>
         <View>
           <Text>{'Here is your input: ' + this.props.testinput}</Text>
+          <Text>{'Here is your selection: ' + this.props.dropdown}</Text>
         </View>
         <View>
           <Button
@@ -59,7 +61,9 @@ const selector = formValueSelector('addItem');
 
 const AddItemState = (store) => {
   const testinput = selector(store, 'testinput');
+  const dropdown = selector(store, 'dropdown');
   return {
+    dropdown,
     testinput,
     username: store.auth.username,
     fridge: store.fridge.fridge,

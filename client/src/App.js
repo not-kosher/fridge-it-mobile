@@ -17,9 +17,11 @@ class App extends React.Component {
   }
 
   render () {
+    let lang = 'js';
     return (
       <View>
         <Text>This is App</Text>
+        <AddItem onSubmit={this.handleSubmit} />
       </View>
     )
   }
