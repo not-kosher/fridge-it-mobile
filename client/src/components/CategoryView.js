@@ -14,17 +14,24 @@ import * as itemActions from '../actions/itemActions'
 class CategoryView extends Component {
   constructor(props) {
     super(props)
+
+    this.filterItems = this.filterItems.bind(this)
   };
 
   componentWillMount() {
-    this.props.fridgeActions.getFridge('lillianno@no.com')
-    console.log(this.props.fridge)
-    // this.props.fridgeActions.getFridge(localStorage.getItem(19));
-    // let state = this;
-    // console.log(state)
-    // setTimeout(() => {
-    //   state.props.itemActions.getItems(localStorage.getItem('fId'));
-    // }, 500);
+    this.props.fridgeActions.getFridge('lillianno@no.com', () => {
+      this.props.itemActions.getItems(this.props.fridge.id, () => {
+        console.log(this.filterItems(this.props.navigation.state.params.category))
+      })
+    })
+  };
+
+  filterItems(type) {
+    return this.props.items.filter(item => {
+      if (item.type === type) {
+        return item; 
+      }
+    })
   };
 
   render() {

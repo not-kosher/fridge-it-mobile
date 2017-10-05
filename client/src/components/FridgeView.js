@@ -8,14 +8,17 @@ import {
 
 
 
+
 class FridgeView extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
-  componentWillMount() {
-    
-  }
+  // componentWillMount() {
+  //     this.props.fridgeActions.getFridge('lillianno@no.com', () => {
+  //     this.props.itemActions.getItems(this.props.fridge.id)
+  //   })
+  // };
 
   render() {
     const { navigate } = this.props.navigation;
@@ -24,33 +27,33 @@ class FridgeView extends Component {
         <Button 
           style={{flex: 1,}}
           title='Frozen'
-          onPress={() => navigate('CategoryView')}
+          onPress={() => navigate('CategoryView', {category: 'frozen'})}
         />
         <Button 
           style={{flex: 1,}}
           title='Protein'
-          onPress={() => navigate('CategoryView')}
+          onPress={() => navigate('CategoryView', {category: 'protein'})}
         />
         <Button 
           style={{flex: 1,}}
           title='Grains'
-          onPress={() => navigate('CategoryView')}
+          onPress={() => navigate('CategoryView', {category: 'grains'})}
         />
         <Button 
           style={{flex: 1,}}
           title='Dairy'
-          onPress={() => navigate('CategoryView')}
+          onPress={() => navigate('CategoryView', {category: 'dairy'})}
         />
         <Button 
           style={{flex: 1}}
           title='Produce'
-          onPress={() => navigate('CategoryView')}
+          onPress={() => navigate('CategoryView', {category: 'produce'})}
         />
         <View style={{flex: 1,}}>
           <Button 
             style={{flex: 1}}
             title='Misc'
-            onPress={() => navigate('CategoryView')}
+            onPress={() => navigate('CategoryView', {category: 'misc'})}
           />
         </View>
 

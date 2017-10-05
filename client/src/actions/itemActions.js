@@ -3,11 +3,12 @@ import axios from './axiosInstance';
 //functions to get items and add items on front end 
 //uses reducers as part of promises to change state
 
-export function getItems(fridgeId) {
+export function getItems(fridgeId, callback) {
   return function(dispatch) {
     axios.get('/api/items/' + fridgeId)
       .then(({ data }) => {
         dispatch({type: 'FETCH_ITEMS_FULFILLED', payload: data});
+        callback()
       })
       .catch(err => { 
         dispatch({type: 'FETCH_ITEMS_REJECTED', payload: err});
