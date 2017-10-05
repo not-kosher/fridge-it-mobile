@@ -11,17 +11,12 @@ class App extends React.Component {
   constructor() {
     super()
   }
-  
-  handleSubmit(values) {
-    console.log('help me', values);
-  }
 
   render () {
     let lang = 'js';
     return (
       <View>
-        <Text>This is App</Text>
-        <AddItem onSubmit={this.handleSubmit} />
+        <AddItem />
       </View>
     )
   }

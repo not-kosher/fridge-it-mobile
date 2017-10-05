@@ -17,46 +17,75 @@ import CustomPicker from './CustomPicker';
 
 class AddItem extends React.Component {
 
-  testing() {
-    console.log('Also in here', this.props.testinput)
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  render () {
+  handleSubmit(e) {
+    console.log(this.props.itemName, this.props.itemAmount, this.props.category);
+  }
+
+  render() {
     return ( 
       <View>
-        <Field name='testinput' component={CustomTextInput} placeholder='test' />
-        <Field name='numinput' component={CustomTextInput} placeholder='num' keyboardType = 'numeric' />
         <View>
-          <Text>Test dropdown</Text>
-          <Field name='dropdown' component={CustomPicker} mode='dropdown' iosHeader='Select' >
-            <Picker.Item label='hi' value='hi' />
-            <Picker.Item label='bye' value='bye' />
-            <Picker.Item label="30 Years" value="30" />
-          </Field>
+          <Text>Add a new item</Text>
         </View>
-        <Button
-          onPress={(values) => {
-            this.props.handleSubmit(values);
-            this.testing(values);
-            }}
-          title='Submit' 
-        />
+        <View>
+          <Field 
+            name='itemName' 
+            placeholder='Name of the item' 
+            autoCapitalize='none'
+            component={CustomTextInput} 
+          />
+          <Field 
+            name='itemAmount' 
+            placeholder='Amount' 
+            keyboardType = 'numeric'
+            component={CustomTextInput} 
+          />
+          <View>
+            <Text>Select a category</Text>
+            <Field 
+              name='category'
+              component={CustomPicker} 
+            >
+              <Picker.Item label='Produce' value='produce' />
+              <Picker.Item label='Dairy' value='dairy' />
+              <Picker.Item label='Frozen' value='frozen' />
+              <Picker.Item label='Grains and Starches' value='grains' />
+              <Picker.Item label='Frozen' value='frozen' />
+              <Picker.Item label='Miscellaneous' value='misc' />
+            </Field>
+          </View>
+          <Button
+            onPress={this.handleSubmit}
+            title='Submit' 
+          />
+        </View>
       </View>
     )
   }
 }
 
+// turn the form into a redux form
 AddItem = reduxForm({
   form: 'addItem'
 })(AddItem);
+// create a selector to grab form values from the stor
 const selector = formValueSelector('addItem');
 
 const AddItemState = (store) => {
-  const testinput = selector(store, 'testinput');
-  const dropdown = selector(store, 'dropdown');
+  // add form values as store props on this component
+  const itemName = selector(store, 'itemName');
+  const itemAmount = selector(store, 'itemAmount');
+  const category = selector(store, 'category');
   return {
-    dropdown,
-    testinput,
+    itemName,
+    itemAmount,
+    category,
     username: store.auth.username,
     fridge: store.fridge.fridge,
   }
