@@ -49,14 +49,11 @@ class FridgeView extends Component {
           title='Produce'
           onPress={() => navigate('CategoryView', {category: 'produce'})}
         />
-        <View style={{flex: 1,}}>
-          <Button 
-            style={{flex: 1}}
-            title='Misc'
-            onPress={() => navigate('CategoryView', {category: 'misc'})}
-          />
-        </View>
-
+        <Button 
+          style={{flex: 1}}
+          title='Misc'
+          onPress={() => navigate('CategoryView', {category: 'misc'})}
+        />
       </View>
     )
   }
