@@ -24,7 +24,13 @@ class AddItem extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.props.itemName, this.props.itemAmount, this.props.category);
+    const item = {
+      name: this.props.itemName,
+      quantity: this.props.itemAmount,
+      type: this.props.category,
+      user: this.props.username,
+    }
+    this.props.itemActions.addItem(item, this.props.fridge.id);
   }
 
   render() {
