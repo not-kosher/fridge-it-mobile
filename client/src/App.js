@@ -35,8 +35,6 @@ class App extends React.Component {
           this.props.itemActions.setUser(data[0][1], data[1][1]);
           this.getOrCreateFridge(data[0][1]);
         } 
-
-        this.setState({isReady: true});
       })
       .catch(err => console.log('error with asynstore: ', err));
   }
@@ -59,8 +57,16 @@ class App extends React.Component {
       }
 
       if (!fridge) {
-        addFridge({users: [username], name: username});
-      } 
+        addFridge({users: [username], name: username}, err => {
+          if (err) {
+            return console.log('could not add fridge');
+          }
+
+          this.setState({isReady: true});
+        });
+      } else {
+        this.setState({isReady: true});
+      }
     });
   }
 

@@ -17,17 +17,19 @@ export function getFridge(name, callback) {
   };
 };
 
-export function addFridge(fridge) {
+export function addFridge(fridge, cb) {
   return function(dispatch) {
     axios.post('/api/fridge', {
       users: fridge.users,
       name: fridge.name
     })
       .then(({ data }) => {
-        dispatch({type: 'POST_FRIDGE_FULFILLED', payload: data})
+        dispatch({type: 'POST_FRIDGE_FULFILLED', payload: data});
+        cb();
       })
       .catch(err => {
-        dispatch({type: 'POST_FRIDGE_REJECTED', payload: err})
+        dispatch({type: 'POST_FRIDGE_REJECTED', payload: err});
+        cb(err);
       });
   };
 };
