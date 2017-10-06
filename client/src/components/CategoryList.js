@@ -12,7 +12,8 @@ import CategoryListEntry from './CategoryListEntry'
 
 const CategoryList = (props) => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 6, }}>
+
       <Text style={styles.categoryTitle}>{props.category}</Text>
       <ScrollView>
         {props.food.map((foodItem) => {
@@ -30,7 +31,7 @@ const styles = {
     fontSize: 34,
     fontWeight: '600',
     color: 'white',
-  }
+  },
 }
 
 export default CategoryList;
