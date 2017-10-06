@@ -31,11 +31,14 @@ class AddItem extends React.Component {
       type: this.props.category,
       user: this.props.username,
     }
-    console.log(this.props.fridge.id, item);
-    this.props.itemActions.addItem(item, this.props.fridge.id);
-    this.props.reset();
-    // navigate('CategoryView', this.props.navigation.state.params);
-    // goBack('AddItem');
+    this.props.itemActions.addItem(item, this.props.fridge.id, (err, item) => {
+      if (err) {
+        // handle error here
+        console.log('Error adding item')
+      } else {
+        goBack();
+      }
+    });
   }
 
   render() {
