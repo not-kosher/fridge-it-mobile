@@ -10,7 +10,7 @@ import * as itemActions from '../actions/itemActions'
 
 const CategoryListEntry = (props) => {
   return (
-    <View>
+    <View >
       <Text>{props.foodItem.quantity}</Text>
       <Text>{props.foodItem.name}</Text>
       <Text>{props.foodItem.createdAt.split('T')[0]}</Text>
@@ -46,6 +46,19 @@ const CategoryListEntry = (props) => {
       />
     </View>
   )
+}
+
+const styles = {
+  listEntryContainer: {
+    flex: 1,
+    width: 10,
+    height: 10,
+  },
+  quantity: {
+    flex: 1,
+    width: 10,
+    height: 10
+  }
 }
 
 export default CategoryListEntry;

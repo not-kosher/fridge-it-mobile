@@ -51,8 +51,8 @@ class CategoryView extends Component {
     const { navigate } = this.props.navigation;
     const filteredFoodItems = this.filterItems(this.props.navigation.state.params.category)
     return (
-      <View style={{flex: 1, flexDirection: 'column',  alignContent: 'center', backgroundColor: this.props.navigation.state.params.backgroundColor}}>
-        <CategoryList 
+      <View style={{flex: 1, flexDirection: 'column', backgroundColor: this.props.navigation.state.params.backgroundColor}}>
+        <CategoryList
           backgroundColor={this.props.navigation.state.params.backgroundColor}
           delete={this.deleteItem} 
           edit={this.editItem}
