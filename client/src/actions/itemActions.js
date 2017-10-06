@@ -23,7 +23,6 @@ export function addItem(item, id) {
       quantity: item.quantity,
       type: item.type,
       user: item.user,
-      fridgeId: id,
     })
       .then(({ data }) => {
         dispatch({type: 'POST_ITEM_FULFILLED', payload: data});
@@ -42,18 +41,21 @@ export function updateItem(item, id) {
       quantity: item.quantity, 
       type: item.type,
       user: item.user,
-      fridgeId: id
+      fridgeId: item.fridgeId
     }) 
     .then((response) => {
-      dispatch({type: 'UPDATE_ITEM_FULFILLED', payload: response.data[1]});
+      dispatch({type: 'UPDATE_ITEM_FULFILLED', payload: response.data[1]})
+      .catch(() => (console.log('you dun fucked up')))
     })
     .catch(err => {
+      console.log('what the what')
       dispatch({type: 'UPDATE_ITEM_REJECTED', payload: err});
     })
   }
 }
 
 export function deleteItem(id) {
+  console.log(id)
   return function(dispatch) {
     axios.delete('api/items/' + id)
       .then((response) => {

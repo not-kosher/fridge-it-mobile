@@ -17,7 +17,6 @@ class App extends React.Component {
     return (
       <View style={{flex: 1}}>
         <Fridge />
-        <Text>This is App</Text>
       </View>
     )
   }

@@ -11,17 +11,21 @@ import {
 import * as fridgeActions from '../actions/fridgeActions';
 import * as itemActions from '../actions/itemActions'
 
+import CategoryList from './CategoryList'
+
 class CategoryView extends Component {
   constructor(props) {
     super(props)
 
     this.filterItems = this.filterItems.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
+    this.editItem = this.editItem.bind(this)
   };
 
   componentWillMount() {
     this.props.fridgeActions.getFridge('lillianno@no.com', () => {
       this.props.itemActions.getItems(this.props.fridge.id, () => {
-        console.log(this.filterItems(this.props.navigation.state.params.category))
+        this.filterItems(this.props.navigation.state.params.category)
       })
     })
   };
@@ -34,14 +38,34 @@ class CategoryView extends Component {
     })
   };
 
+  deleteItem(id) {
+    this.props.itemActions.deleteItem(id)    
+  }
+
+  editItem(item, id) {
+    console.log(item, id)
+    this.props.itemActions.updateItem(item, id)   
+  }
+
   render() {
+    console.log(this.props.backgroundColor)
+    const filteredFoodItems = this.filterItems(this.props.navigation.state.params.category)
     return (
-      <View style={{flex: 1, flexDirection: 'column',  alignContent: 'center' }}>
-        <Text>This Is CategoryView!</Text>
+      <View style={{flex: 1, flexDirection: 'column',  alignContent: 'center', backgroundColor: this.props.navigation.state.params.backgroundColor}}>
+        <CategoryList 
+          delete={this.deleteItem} 
+          edit={this.editItem}
+          food={filteredFoodItems} 
+          category={this.props.navigation.state.params.category}/>
+          <Text>{this.props.navigation.state.params.backgroundColor}</Text>
       </View>
     )
   }
 };
+
+const Styles = {
+ 
+}
 
 const fridgeState = (store) => {
   return {
