@@ -60,7 +60,7 @@ class CategoryView extends Component {
           category={this.props.navigation.state.params.category}/>
           <Button
             title='Add an item!'
-            onPress={() => navigate('AddItem', {backgroundColor: this.props.navigation.state.params.backgroundColor})}
+            onPress={() => navigate('AddItem', this.props.navigation.state.params)}
           />
       </View>
     )

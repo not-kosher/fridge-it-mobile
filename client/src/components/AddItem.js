@@ -24,6 +24,7 @@ class AddItem extends React.Component {
   }
 
   handleSubmit(e) {
+    const { goBack, navigate } = this.props.navigation;
     const item = {
       name: this.props.itemName,
       quantity: this.props.itemAmount,
@@ -31,6 +32,9 @@ class AddItem extends React.Component {
       user: this.props.username,
     }
     this.props.itemActions.addItem(item, this.props.fridge.id);
+    this.props.reset();
+    // navigate('CategoryView', this.props.navigation.state.params);
+    // goBack('AddItem');
   }
 
   render() {
@@ -74,6 +78,7 @@ class AddItem extends React.Component {
                 name='category'
                 component={CustomPicker}
                 itemStyle={styles.pickerText}
+                selectedValue={this.props.navigation.state.params.category}
               >
                 <Picker.Item label='Produce' value='produce' />
                 <Picker.Item label='Dairy' value='dairy' />
