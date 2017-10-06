@@ -70,6 +70,7 @@ class AddItem extends React.Component {
               <Field 
                 name='category'
                 component={CustomPicker}
+                itemStyle={styles.pickerText}
               >
                 <Picker.Item label='Produce' value='produce' />
                 <Picker.Item label='Dairy' value='dairy' />
@@ -93,10 +94,13 @@ class AddItem extends React.Component {
   }
 }
 
+const darkText = '#00000099';
+const lightText = '#ffffff99';
+
 const styles = {
   formView: {
     flex: 1, 
-    backgroundColor:'steelblue'
+    backgroundColor:'#fc7e7e'
   },
   title: {
     flex: 1, 
@@ -133,22 +137,26 @@ const styles = {
     width: 250,
     alignSelf: 'center', 
     borderWidth: 2,
-    borderColor: '#00000030',
+    borderColor: '#00000010',
     backgroundColor: '#ffffff80'
   }, 
   inputField: {
     flex: 1, 
     alignSelf: 'stretch', 
-    padding: 5
+    padding: 5,
+    color: darkText
   },
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#00000090'
+    color: darkText
   },
   pickerTitleText: {
     fontSize: 18,
-    color: '#00000090'
+    color: darkText
+  },
+  pickerText: {
+    color: darkText
   },
   button: {
     marginBottom: 30,
@@ -160,7 +168,7 @@ const styles = {
     padding: 20,
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#ffffff95'
+    color: lightText
   }
 }
 
