@@ -5,7 +5,7 @@ import {
   View,
   Text,
   TextInput,
-  TouchableHighlight,
+  TouchableOpacity,
   Picker,
 } from 'react-native'
 import { Field, reduxForm, formValueSelector, Item } from 'redux-form'
@@ -24,6 +24,7 @@ class AddItem extends React.Component {
   }
 
   handleSubmit(e) {
+    const { goBack, navigate } = this.props.navigation;
     const item = {
       name: this.props.itemName,
       quantity: this.props.itemAmount,
@@ -31,11 +32,17 @@ class AddItem extends React.Component {
       user: this.props.username,
     }
     this.props.itemActions.addItem(item, this.props.fridge.id);
+    this.props.reset();
+    // navigate('CategoryView', this.props.navigation.state.params);
+    // goBack('AddItem');
   }
 
   render() {
     return ( 
-      <View style={styles.formView}>
+      <View style={{
+        flex: 1, 
+        backgroundColor: this.props.navigation.state.params.backgroundColor
+      }}>
         <View style={styles.title}>
           <Text style={styles.titleText}>Add a new item</Text>
         </View>
@@ -71,6 +78,7 @@ class AddItem extends React.Component {
                 name='category'
                 component={CustomPicker}
                 itemStyle={styles.pickerText}
+                selectedValue={this.props.navigation.state.params.category}
               >
                 <Picker.Item label='Produce' value='produce' />
                 <Picker.Item label='Dairy' value='dairy' />
@@ -82,11 +90,11 @@ class AddItem extends React.Component {
             </View>
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableHighlight onPress={this.handleSubmit}>
+            <TouchableOpacity onPress={this.handleSubmit}>
               <View style={styles.button}>
                 <Text style={styles.buttonText}>Submit</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -97,10 +105,10 @@ class AddItem extends React.Component {
 const darkText = '#00000099';
 const lightText = '#ffffff99';
 
-const styles = {
+let styles = {
   formView: {
     flex: 1, 
-    backgroundColor:'#fc7e7e'
+    backgroundColor: ''
   },
   title: {
     flex: 1, 
