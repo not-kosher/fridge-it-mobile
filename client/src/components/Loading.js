@@ -3,30 +3,10 @@ import {
   View,
   Text
 } from 'react-native';
+import { PacmanIndicator } from 'react-native-indicators'
 
 const Loading = () => (
-  <View>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-    <Text>LOADING LOADING LOADING LOADING</Text>
-  </View>
+  <PacmanIndicator color='rgb(100, 200, 240)'/>
 );
 
 export default Loading;
