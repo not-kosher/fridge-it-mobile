@@ -1,16 +1,13 @@
 import React from 'react';
 import { Picker, View, Text } from 'react-native';
 
-const CustomPicker = (props) => {
-  const { input, ...pickerProps } = props;
-
+const CustomPicker = ({ input, children, ...pickerProps }) => {
   return (
     <Picker
-      {...pickerProps}
-      onValueChange={(event, index, value) => input.onChange(input.value)}
+      onValueChange={input.onChange}
       selectedValue={input.value}
-      onBlur={input.onBlur}
-      onFocus={input.onFocus}
+      children={children}
+      {...pickerProps}
     />
   );
 }
