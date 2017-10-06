@@ -4,7 +4,7 @@ import {
   View,
   Text
 } from 'react-native'
-import AddItem from './components/AddItem';
+import Fridge from './components/Fridge'
 
 
 class App extends React.Component {
@@ -16,7 +16,7 @@ class App extends React.Component {
     let lang = 'js';
     return (
       <View style={{flex: 1}}>
-        <AddItem />
+        <Fridge />
       </View>
     )
   }
