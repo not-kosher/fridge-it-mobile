@@ -28,7 +28,7 @@ class AddItem extends React.Component {
     const item = {
       name: this.props.itemName,
       quantity: this.props.itemAmount,
-      type: this.props.navigation.state.params.category,
+      type: this.props.navigation.state.params.category || this.props.category,
       user: this.props.username,
     }
     this.props.itemActions.addItem(item, this.props.fridge.id, (err, item) => {
@@ -205,11 +205,11 @@ const AddItemState = (store) => {
   // add form values as store props on this component
   const itemName = selector(store, 'itemName');
   const itemAmount = selector(store, 'itemAmount');
-  // const category = selector(store, 'category');
+  const category = selector(store, 'category');
   return {
     itemName,
     itemAmount,
-    // category,
+    category,
     username: store.auth.username,
     fridge: store.fridge.fridge,
   }
