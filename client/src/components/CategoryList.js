@@ -11,7 +11,7 @@ import CategoryListEntry from './CategoryListEntry'
 
 const CategoryList = (props) => {
   return (
-    <View>
+    <View style={{flex: 1}}>
       <Text>{props.category}</Text>
       {props.food.map((foodItem) => {
         return <CategoryListEntry edit={props.edit} delete={props.delete} foodItem={foodItem} key={foodItem.id}/>
