@@ -23,7 +23,7 @@ class CategoryView extends Component {
   };
 
   componentWillMount() {
-    this.props.fridgeActions.getFridge('lillianno@no.com', () => {
+    this.props.fridgeActions.getFridge(this.props.username, () => {
       this.props.itemActions.getItems(this.props.fridge.id, () => {
         this.filterItems(this.props.navigation.state.params.category)
       })
@@ -60,7 +60,7 @@ class CategoryView extends Component {
           category={this.props.navigation.state.params.category}/>
           <Button
             title='Add an item!'
-            onPress={() => navigate('AddItem')}
+            onPress={() => navigate('AddItem', this.props.navigation.state.params)}
           />
       </View>
     )

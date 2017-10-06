@@ -32,7 +32,7 @@ const Login = (props) => {
           name='password'
           component={CustomTextInput}
           placeholder='password'
-          secureTextEntry='true'
+          secureTextEntry={true}
           autoCapitalize='none'
         />
       </View>
