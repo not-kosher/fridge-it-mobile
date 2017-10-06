@@ -32,7 +32,7 @@ export const emailLogin = (email, pw, cb) => {
           userId: result.uid
         }});
 
-        cb(null, result.email);
+        cb(null, {username: result.email, userId: result.uid});
       })
       .catch((error) => {
         // alert(errorMsgs[error.message]);        
@@ -73,7 +73,7 @@ export const emailSignUp = (email, pw, cb) => {
           userId: result.uid
         }});
 
-        cb(null, result.email);
+        cb(null, {username: result.email, userId: result.uid});
       })
       .catch(function(error) {
         // alert(error.message);        

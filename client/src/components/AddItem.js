@@ -31,6 +31,7 @@ class AddItem extends React.Component {
       type: this.props.category,
       user: this.props.username,
     }
+    console.log(this.props.fridge.id, item);
     this.props.itemActions.addItem(item, this.props.fridge.id);
     this.props.reset();
     // navigate('CategoryView', this.props.navigation.state.params);
@@ -78,7 +79,6 @@ class AddItem extends React.Component {
                 name='category'
                 component={CustomPicker}
                 itemStyle={styles.pickerText}
-                selectedValue={this.props.navigation.state.params.category}
               >
                 <Picker.Item label='Produce' value='produce' />
                 <Picker.Item label='Dairy' value='dairy' />
