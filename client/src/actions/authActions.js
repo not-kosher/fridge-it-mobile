@@ -83,6 +83,15 @@ export const emailSignUp = (email, pw, cb) => {
   };
 };
 
+export const setUser = (username, userId) => {
+  return function(dispatch) {
+    dispatch({type: 'USER_LOGIN_FULFILLED', payload: {
+      username,
+      userId
+    }});
+  };
+};
+
 // Custom error messages.
 const errorMsgs = {
 "The password is invalid or the user does not have a password.": 'Password and/or email address is incorrect.',

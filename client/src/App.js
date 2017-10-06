@@ -10,7 +10,7 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import Login from './components/Login.js';
+import Login from './components/LogIn.js';
 import Fridge from './components/Fridge.js';
 import Loading from './components/Loading.js';
 
