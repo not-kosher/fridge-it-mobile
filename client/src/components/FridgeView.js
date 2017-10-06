@@ -20,7 +20,7 @@ class FridgeView extends Component {
     return (
       <View style={styles.fridgeContainer}>
       <TouchableOpacity style={{flex: 1}} onPress={() => navigate('CategoryView', {category: 'frozen', backgroundColor: '#bad5dd'})}>
-        <View style={styles.frozenView}>
+        <View style={{...styles.frozenView, ...styles.catergoryView}}>
           <View style={styles.shelf}>
               <Image
                 style={styles.image}
@@ -31,7 +31,7 @@ class FridgeView extends Component {
       </TouchableOpacity>
       <View style={styles.shelf}>
         <TouchableOpacity style={{flex: 1}} onPress={() => navigate('CategoryView', {category: 'protein', backgroundColor: '#FC7E7E'})}>
-          <View style={styles.proteinView}>
+          <View style={{...styles.proteinView, ...styles.catergoryView}}>
             <Image
               style={styles.image}
               source={require('../images/protein.png')}
@@ -39,7 +39,7 @@ class FridgeView extends Component {
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={{flex: 1}} onPress={() => navigate('CategoryView', {category: 'grains', backgroundColor: '#F2CC7B'})}>
-          <View style={styles.grainsView}>
+          <View style={{...styles.grainsView, ...styles.catergoryView}}>
             <Image
               style={styles.image}
               source={require('../images/grains.png')}
@@ -49,7 +49,7 @@ class FridgeView extends Component {
       </View>
       <TouchableOpacity style={{flex: 1}} onPress={() => navigate('CategoryView', {category: 'dairy', backgroundColor: '#A5C6EF'})}>
         <View style={styles.shelf}>
-            <View style={styles.dairyView}>
+            <View style={{...styles.dairyView, ...styles.catergoryView}}>
               <Image
                 style={styles.image}
                 source={require('../images/dairy.png')}
@@ -59,7 +59,7 @@ class FridgeView extends Component {
       </TouchableOpacity>
         <View style={styles.shelf}>
             <TouchableOpacity style={{flex: 2}} onPress={() => navigate('CategoryView', {category: 'produce', backgroundColor: '#A2D8C0'})}>
-              <View style={styles.produceView}>
+              <View style={{...styles.produceView, ...styles.catergoryView}}>
                 <Image
                   style={styles.image}
                   source={require('../images/produce.png')}
@@ -67,7 +67,7 @@ class FridgeView extends Component {
               </View>
             </TouchableOpacity>
           <TouchableOpacity  style={{flex: 1}} onPress={() => navigate('CategoryView', {category: 'misc', backgroundColor: '#e5a5c2'})}>
-            <View style={styles.miscView}>
+            <View style={{...styles.miscView, ...styles.catergoryView}}>
               <Image
                 style={styles.image}
                 source={require('../images/misc.png')}
@@ -82,41 +82,44 @@ class FridgeView extends Component {
 
 const styles = {
   fridgeContainer: {flex: 1,
-    flexDirection: 'column', 
+    alignContent: 'center',
     backgroundColor: 'white'
   },
   shelf: {
     flex: 1, 
+    alignContent: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
   },
   image: {
+    alignSelf: 'center',
     height: 125,
     width: 125, 
   },
+  catergoryView: {
+    flex: 1,
+    marginBottom: 5,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   frozenView: {
     flex: 1,
-    flexDirection: 'row',
-    alignSelf: 'stretch',
+    marginTop: 5,
     backgroundColor: '#bad5dd'
   },
   proteinView: {
-    flex: 1,
     backgroundColor: '#FC7E7E'
   },
   grainsView: {
-    flex: 1,
     backgroundColor: '#F2CC7B'
   },
   dairyView: {
-    flex: 1,
     backgroundColor: '#A5C6EF'
   },
   produceView: {
-    flex: 1,
     backgroundColor: '#A2D8C0'
   },
   miscView: {
-    flex: 1,
     backgroundColor: '#e5a5c2'
   }
 }
