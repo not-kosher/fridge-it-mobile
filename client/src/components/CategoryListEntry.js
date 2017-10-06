@@ -10,17 +10,18 @@ import {
 import * as itemActions from '../actions/itemActions'
 
 const CategoryListEntry = (props) => {
+  let date = props.foodItem.createdAt.split('T')[0].substring(5);
   return (
     <View style={styles.listEntryContainer}>
       <View style={styles.listEntryRow}>
         <View style={{...styles.label, ...styles.quantityView}}>
-          <Text style={{...styles.quantity, ...styles.text}}>{props.foodItem.quantity}</Text>
+          <Text style={styles.text}>{props.foodItem.quantity}</Text>
         </View>
         <View style={{...styles.label, ...styles.nameView}}>
-          <Text style={{...styles.name, ...styles.text}}>{props.foodItem.name}</Text>
+          <Text style={{...styles.text, ...styles.name}}>{props.foodItem.name}</Text>
         </View>
         <View style={{...styles.label, ...styles.dateView}}>
-          <Text style={{...styles.date, ...styles.text}} >{props.foodItem.createdAt.split('T')[0]}</Text>
+          <Text style={styles.text} >{date}</Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
@@ -100,16 +101,10 @@ const styles = {
     flex: 4
   },
   dateView: {
-    flex: 4
-  },
-  quantity: {
-    alignSelf: 'center'
+    flex: 2
   },
   name: {
-    alignSelf: 'center'
-  },
-  date: {
-    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   buttonContainer: {
     flex: 5,
@@ -130,7 +125,9 @@ const styles = {
     width: 20
   },
   text: {
-    color: '#00000099'
+    alignSelf: 'center',
+    color: '#00000099',
+    fontSize: 18
   }
 
 }
