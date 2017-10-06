@@ -9,10 +9,12 @@ import {
 
 import FridgeView from './FridgeView'
 import CategoryView from './CategoryView'
+import AddItem from './AddItem'
 
 const Fridge = StackNavigator({
   FridgeView: { screen: FridgeView },
-  CategoryView: { screen: CategoryView }
+  CategoryView: { screen: CategoryView },
+  AddItem: {screen: AddItem}
 })
 
 export default Fridge;
