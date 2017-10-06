@@ -28,7 +28,7 @@ class AddItem extends React.Component {
     const item = {
       name: this.props.itemName,
       quantity: this.props.itemAmount,
-      type: this.props.category,
+      type: this.props.navigation.state.params.category,
       user: this.props.username,
     }
     this.props.itemActions.addItem(item, this.props.fridge.id, (err, item) => {
@@ -42,13 +42,19 @@ class AddItem extends React.Component {
   }
 
   render() {
+    let category = this.props.navigation.state.params.category;
+    if (category === 'grains') {
+      category = 'grain';
+    } else if (category !== 'protein') {
+      category += ' item';
+    }
     return ( 
       <View style={{
         flex: 1, 
         backgroundColor: this.props.navigation.state.params.backgroundColor
       }}>
         <View style={styles.title}>
-          <Text style={styles.titleText}>Add a new item</Text>
+          <Text style={styles.titleText}>{`Add a ${category}`}</Text>
         </View>
         <View style={styles.formContainer}>
           <View style={styles.inputContainer}>
@@ -73,26 +79,36 @@ class AddItem extends React.Component {
               />
             </View>
           </View>
-          <View style={styles.pickerContainer}>
-            <View style={styles.pickerTitle}>
-              <Text style={styles.pickerTitleText}>Select a category</Text>
+          {!this.props.navigation.state.params.category ?
+            <View style={styles.pickerContainer}>
+              <View style={styles.pickerTitle}>
+                <Text style={styles.pickerTitleText}>Select a category</Text>
+              </View>
+              <View style={styles.pickerView}>
+                <Field 
+                  name='category'
+                  component={CustomPicker}
+                  itemStyle={styles.pickerText}
+                >
+                  <Picker.Item label='Produce' value='produce' />
+                  <Picker.Item label='Dairy' value='dairy' />
+                  <Picker.Item label='Protein' value='protein' />
+                  <Picker.Item label='Grains and Starches' value='grains' />
+                  <Picker.Item label='Frozen' value='frozen' />
+                  <Picker.Item label='Miscellaneous' value='misc' />
+                </Field>
+              </View>
             </View>
-            <View style={styles.pickerView}>
-              <Field 
-                name='category'
-                component={CustomPicker}
-                itemStyle={styles.pickerText}
-              >
-                <Picker.Item label='Produce' value='produce' />
-                <Picker.Item label='Dairy' value='dairy' />
-                <Picker.Item label='Protein' value='protein' />
-                <Picker.Item label='Grains and Starches' value='grains' />
-                <Picker.Item label='Frozen' value='frozen' />
-                <Picker.Item label='Miscellaneous' value='misc' />
-              </Field>
-            </View>
-          </View>
-          <View style={styles.buttonContainer}>
+            : 
+            null
+          }
+          <View style={{
+            // add style here because of variable flex size
+            flex: this.props.navigation.state.params.category ? 7 : 2, 
+            paddingTop: 20,
+            justifyContent: 'flex-start',
+            alignItems: 'center'
+          }}>
             <TouchableOpacity onPress={this.handleSubmit}>
               <View style={styles.button}>
                 <Text style={styles.buttonText}>Submit</Text>
@@ -117,10 +133,10 @@ let styles = {
     flex: 1, 
     alignItems: 'center', 
     justifyContent: 'flex-end',
-    paddingBottom: 30
+    paddingBottom: 40
   },
   formContainer: {
-    flex: 4, 
+    flex: 5, 
     justifyContent: 'space-around'
   },
   inputContainer: {
@@ -137,11 +153,6 @@ let styles = {
   pickerView: {
     flex: 5,
     justifyContent: 'center',
-  },
-  buttonContainer: {
-    flex: 2, 
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   borderView: {
     height: 50, 
@@ -194,11 +205,11 @@ const AddItemState = (store) => {
   // add form values as store props on this component
   const itemName = selector(store, 'itemName');
   const itemAmount = selector(store, 'itemAmount');
-  const category = selector(store, 'category');
+  // const category = selector(store, 'category');
   return {
     itemName,
     itemAmount,
-    category,
+    // category,
     username: store.auth.username,
     fridge: store.fridge.fridge,
   }
