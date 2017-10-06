@@ -121,7 +121,7 @@ class AddItem extends React.Component {
   }
 }
 
-const darkText = '#00000099';
+const darkText = '#000000b3';
 const lightText = '#ffffff';
 
 let styles = {
