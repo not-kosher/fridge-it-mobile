@@ -8,10 +8,11 @@ export function getFridge(name, callback) {
     axios.get('/api/fridge/' + name)
       .then((data) => {
         dispatch({type: 'FETCH_FRIDGE_FULFILLED', payload: data.data[0]});
-        callback();
+        callback(null, data.data[0]);
       })
       .catch(err => {
         dispatch({type: 'FETCH_FRIDGE_REJECTED', payload: err});
+        callback(err);
       });
   };
 };

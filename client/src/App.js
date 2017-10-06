@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authActions from './actions/authActions.js';
+import * as fridgeActions from './actions/fridgeActions.js';
 
 import {
   View,
@@ -32,6 +33,7 @@ class App extends React.Component {
           console.log('found a user in asynstore');
           //set the gloabal username and userId from the AsynStorage
           this.props.itemActions.setUser(data[0][1], data[1][1]);
+          this.getOrCreateFridge(data[0][1]);
         } 
 
         this.setState({isReady: true});
@@ -40,10 +42,26 @@ class App extends React.Component {
   }
 
   successfulLogin(user) {
-    this.props.itemActions.setUser(user.username, user.userId);
     AsyncStorage.multiSet([
       ['username', user.username], ['userId', user.userId]
     ]); 
+
+    this.props.itemActions.setUser(user.username, user.userId);
+    this.getOrCreateFridge(user.username);
+  }
+
+  getOrCreateFridge(username) {
+    const { getFridge, addFridge } = this.props.fridgeActions;
+
+    getFridge(username, (err, fridge) => {
+      if (err) {
+        return console.log('error getting fridge: ', err);
+      }
+
+      if (!fridge) {
+        addFridge({users: [username], name: username});
+      } 
+    });
   }
 
   render () {
@@ -54,7 +72,8 @@ class App extends React.Component {
       );
     }
 
-    if (this.props.username) {
+    //CHANGE TO CHECK FOR FRIDGE, ALSO INCLUDE FRIDGE ON PROPS BELOW
+    if (this.props.fridgeName) {
       return (
         <Fridge />
       );
@@ -71,12 +90,14 @@ const AppState = (store) => {
   return {
     username: store.auth.username,
     userId: store.auth.userId,
+    fridgeName: store.fridge.fridge.name
   }
 };
 
 const AppDispatch = (dispatch) => {
   return {
-    itemActions: bindActionCreators(authActions, dispatch)
+    itemActions: bindActionCreators(authActions, dispatch),
+    fridgeActions: bindActionCreators(fridgeActions, dispatch)
   }
 };
 
