@@ -72,7 +72,7 @@ class CategoryView extends Component {
 };
 
 const darkText = '#00000099';
-const lightText = '#ffffff99';
+const lightText = '#ffffff';
 
 const styles = {
   button: {
