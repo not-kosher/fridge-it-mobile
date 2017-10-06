@@ -16,9 +16,9 @@ export function getItems(fridgeId, callback) {
   };
 };
 
-export function addItem(item, id) {
+export function addItem(item, id, cb) {
   return function(dispatch) {
-    axios.post('/api/items', {
+    axios.post('/api/items/', {
       name: item.name,
       quantity: item.quantity,
       type: item.type,
@@ -28,9 +28,11 @@ export function addItem(item, id) {
       .then(({ data }) => {
         dispatch({type: 'POST_ITEM_FULFILLED', payload: data});
         dispatch({type: 'NEW_ITEM_POSTED'});
+        cb(null, data);
       })
       .catch(err => { 
         dispatch({type: 'POST_ITEM_REJECTED', payload: err});
+        cb(err);
       });
   };
 };
