@@ -33,7 +33,7 @@ class App extends React.Component {
           if (data[0][1] !== null) {
             console.log('found a user in asynstore');
             //set the gloabal username and userId from the AsynStorage
-            this.props.itemActions.setUser(data[0][1], data[1][1]);
+            this.props.authActions.setUser(data[0][1], data[1][1]);
             this.getOrCreateFridge(data[0][1]);
           } else {
             this.setState({isReady: true});
