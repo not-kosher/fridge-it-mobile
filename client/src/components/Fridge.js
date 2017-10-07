@@ -13,27 +13,34 @@ const Logo = (
     style={{height: 40, width: 40, paddingBottom: 2}} 
   />
 );
+import Home from './Map'
 
-const Fridge = StackNavigator({
-  FridgeView: { screen: FridgeView, 
-    navigationOptions: ({ navigation }) => ({
-      headerTitle: (
-        <Button 
-          title='Add an item!' 
-          onPress={() => {
-            navigation.navigate('AddItem', {backgroundColor: '#3c85ca'});
-          }} 
-        />
-      )
-    })
+import GeolocationExample from './Geolocation'
+
+const Fridge = StackNavigator(
+  {
+    FridgeView: { screen: FridgeView, 
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: (
+          <Button 
+            title='Add an item!' 
+            onPress={() => {
+              navigation.navigate('AddItem', {backgroundColor: '#3c85ca'});
+            }} 
+          />
+        )
+      })
+    },
+    CategoryView: { screen: CategoryView },
+    AddItem: {screen: AddItem},
+    Map: {screen: Home},
+    GeolocationExample: {screen: GeolocationExample}
+  }, 
+  {
+    initialRouteParams: {
+      something: 'something'
   },
-  CategoryView: { screen: CategoryView },
-  AddItem: {screen: AddItem}
-}, {
-  initialRouteParams: {
-    something: 'something'
-  },
-  navigationOptions: (props) => ({
+    navigationOptions: (props) => ({
       headerTitle: Logo,
       headerRight: (<Logout />),
       headerStyle: {
@@ -43,5 +50,6 @@ const Fridge = StackNavigator({
     })
   },
 );
+
 
 export default Fridge;
