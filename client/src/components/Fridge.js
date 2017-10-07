@@ -18,19 +18,8 @@ const Logo = (
   />
 );
 
-const Header = (
-  <View style={{backgroundColor: 'white', height: 60, alignItems: 'center', justifyContent: 'flex-end'}}>
-    <Image 
-      source={require('../images/logo.png')} 
-      style={{height: 40, width: 40}} 
-    />
-  </View>
-);
-
 const Logout = (
-  <View style={{marginLeft: 100}}>
-    <Button title='Logout' onPress={()=>console.log('help me')} />
-  </View>
+  <Button title='Logout' onPress={()=>console.log('help me')} />
 );
 
 const Fridge = StackNavigator({
@@ -40,15 +29,11 @@ const Fridge = StackNavigator({
 }, {
   navigationOptions: ({ navigation }) => ({
     headerTitle: Logo,
-    headerTitleStyle: {
-      alignSelf: 'center'
-    },
     headerRight: Logout,
     headerStyle: {
       backgroundColor: 'white',
       borderBottomColor: 'white'
     }
-    // header: Header
   }),
 })
 
