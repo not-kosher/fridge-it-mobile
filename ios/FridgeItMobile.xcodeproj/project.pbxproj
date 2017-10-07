@@ -391,15 +391,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-<<<<<<< HEAD
 				2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */,
-=======
 				2D02E4C91E0B4AEC006451C7 /* libReact-tvOS.a in Frameworks */,
->>>>>>> renders map of san francisco when you click protein button
-=======
 				2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */,
->>>>>>> shows current location with marker (even though it just says san francisco)
 				2D02E4C21E0B4AEC006451C7 /* libRCTAnimation.a in Frameworks */,
 				2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */,
 				2D02E4C41E0B4AEC006451C7 /* libRCTLinking-tvOS.a in Frameworks */,
@@ -521,17 +515,14 @@
 				3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */,
 				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
 				3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */,
-<<<<<<< HEAD
 				2FF875CC1F882CF10006E639 /* libthird-party.a */,
 				2FF875CE1F882CF10006E639 /* libthird-party.a */,
 				2FF875D01F882CF10006E639 /* libdouble-conversion.a */,
 				2FF875D21F882CF10006E639 /* libdouble-conversion.a */,
-=======
 				EB2715511F893F9800EA1C88 /* libthird-party.a */,
 				EB2715531F893F9800EA1C88 /* libthird-party.a */,
 				EB2715551F893F9800EA1C88 /* libdouble-conversion.a */,
 				EB2715571F893F9800EA1C88 /* libdouble-conversion.a */,
->>>>>>> shows current location with marker (even though it just says san francisco)
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -591,16 +582,10 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FridgeItMobileTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
-<<<<<<< HEAD
 				AE8EB2C61F894DA8001CC607 /* Ionicons.ttf */,
 				AE8EB2E71F895254001CC607 /* MaterialCommunityIcons.ttf */,
-=======
 				EB2715061F89352100EA1C88 /* Recovered References */,
-<<<<<<< HEAD
->>>>>>> renders map of san francisco when you click protein button
-=======
 				EB2715581F893FB400EA1C88 /* Frameworks */,
->>>>>>> shows current location with marker (even though it just says san francisco)
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -622,9 +607,7 @@
 			isa = PBXGroup;
 			children = (
 				ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */,
-<<<<<<< HEAD
 				2FF875911F8816050006E639 /* libRCTBlob-tvOS.a */,
-=======
 				EB27150D1F89352300EA1C88 /* libRCTBlob-tvOS.a */,
 			);
 			name = Products;
@@ -643,7 +626,6 @@
 			isa = PBXGroup;
 			children = (
 				EB2715201F89352400EA1C88 /* libAirMaps.a */,
->>>>>>> renders map of san francisco when you click protein button
 			);
 			name = Products;
 			sourceTree = "<group>";
