@@ -40,7 +40,7 @@ const Login = (props) => {
       <View>
         <Button 
           onPress={() => {
-            props.itemActions.emailSignUp(props.emailValue, props.passwordValue, (err, user) => {
+            props.authActions.emailSignUp(props.emailValue, props.passwordValue, (err, user) => {
               if (err) {
                 console.log(err);
               } else {
@@ -55,7 +55,7 @@ const Login = (props) => {
 
         <Button 
           onPress={() => {
-            props.itemActions.emailLogin(props.emailValue, props.passwordValue, (err, user) => {
+            props.authActions.emailLogin(props.emailValue, props.passwordValue, (err, user) => {
               if (err) {
                 console.log(err);
               } else {
@@ -92,7 +92,7 @@ const LoginState = (store) => {
 
 const LoginDispatch = (dispatch) => {
   return {
-    itemActions: bindActionCreators(authActions, dispatch)
+    authActions: bindActionCreators(authActions, dispatch)
   }
 };
 

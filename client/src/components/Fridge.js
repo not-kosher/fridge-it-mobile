@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StackNavigator, } from 'react-navigation';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { StackNavigator } from 'react-navigation';
 import {
   Button,
   View,
@@ -7,9 +9,30 @@ import {
   Text,
 } from 'react-native'
 
+import * as authActions from '../actions/authActions.js';
 import FridgeView from './FridgeView'
 import CategoryView from './CategoryView'
 import AddItem from './AddItem'
+
+let Logout = (props) => (
+  <Button title='Logout' onPress={() => {
+    props.authActions.logoutUser()
+  }}/>
+);
+
+const LogoutState = (store) => {
+  return {
+    fridgeName: store.fridge.fridge.name
+  }
+};
+
+const LogoutDispatch = (dispatch) => {
+  return {
+    authActions: bindActionCreators(authActions, dispatch)
+  }
+};
+
+Logout = connect(LogoutState, LogoutDispatch)(Logout);
 
 const Logo = (
   <Image 
@@ -18,23 +41,25 @@ const Logo = (
   />
 );
 
-const Logout = (
-  <Button title='Logout' onPress={()=>console.log('help me')} />
-);
-
 const Fridge = StackNavigator({
-  FridgeView: { screen: FridgeView},
+  FridgeView: { screen: FridgeView },
   CategoryView: { screen: CategoryView },
   AddItem: {screen: AddItem}
 }, {
-  navigationOptions: ({ navigation }) => ({
-    headerTitle: Logo,
-    headerRight: Logout,
-    headerStyle: {
-      backgroundColor: 'white',
-      borderBottomColor: 'white'
-    }
-  }),
-})
+  initialRouteParams: {
+    something: 'something'
+  },
+  navigationOptions: (props) => {
+    console.log(props);
+    return ({
+      headerTitle: Logo,
+      headerRight: (<Logout />),
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomColor: 'white'
+      }
+    })
+  },
+});
 
 export default Fridge;
