@@ -3,6 +3,8 @@ import {
   View,
   Text
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { PacmanIndicator } from 'react-native-indicators'
 
 import MessageEntry from './MessageEntry';
