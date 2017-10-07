@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Platform, ScrollView, StyleSheet } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import SampleText from './SampleText';
 
 import Fridge from './Fridge';
 import MessageView from './MessageView';
