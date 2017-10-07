@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
+  ScrollView,
   Text
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -17,27 +18,49 @@ class MessageView extends Component {
 
   render() {
     return (
-      <View>
-        <PacmanIndicator 
-          color='#000000'
-          size={120}
-        />
-        <View>
-          <Text>Your messages</Text>
+      <View style={styles.messageViewContainer}>
+        <View style={styles.messageViewTitle}>
+          <Text style={styles.text}>Your messages</Text>
         </View>
-        <View>
-        {this.props.messageList.length > 0 ? 
-          this.props.messageList.map((message) => (
-            <MessageEntry message={message} />
-          ))
-          : 
-          <Text>Your message board is empty</Text>
-        }
+        <View style={styles.messageList}>
+          <ScrollView>
+            {this.props.messageList.length > 0 ? 
+              this.props.messageList.map((message) => (
+                <MessageEntry message={message} />
+              ))
+              : 
+              <Text style={styles.emptyText}>Your message board is empty</Text>
+            }
+          </ScrollView>
         </View>
       </View>
     );
   }
 } 
+
+const styles = {
+  messageViewContainer: {
+    flex: 1
+  },
+  messageViewTitle: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    paddingBottom: 15
+  },
+  messageList: {
+    flex: 5
+  },
+  emptyText: {
+    fontSize: 20,
+    color: '#000000b3'
+  },
+  text: {
+    alignSelf: 'center',
+    fontSize: 34,
+    fontWeight: '600',
+    color: '#3c85ca',
+  }
+}
 
 const messageState = (store) => {
   return {
