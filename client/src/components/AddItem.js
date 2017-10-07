@@ -83,15 +83,16 @@ class AddItem extends React.Component {
           </View>
           {!this.props.navigation.state.params.category ?
             <View style={styles.pickerContainer}>
-              <View style={styles.pickerTitle}>
+              {/* <View style={styles.pickerTitle}>
                 <Text style={styles.pickerTitleText}>Select a category</Text>
-              </View>
-              <View style={styles.pickerView}>
+              </View> */}
+              {/* <View style={styles.pickerView}> */}
                 <Field 
                   name='category'
                   component={CustomPicker}
                   itemStyle={styles.pickerText}
                 >
+                  <Picker.Item label='Pick a category' value='' />
                   <Picker.Item label='Produce' value='produce' />
                   <Picker.Item label='Dairy' value='dairy' />
                   <Picker.Item label='Protein' value='protein' />
@@ -99,7 +100,7 @@ class AddItem extends React.Component {
                   <Picker.Item label='Frozen' value='frozen' />
                   <Picker.Item label='Miscellaneous' value='misc' />
                 </Field>
-              </View>
+              {/* </View> */}
             </View>
             : 
             null
@@ -142,10 +143,10 @@ let styles = {
     justifyContent: 'space-around'
   },
   inputContainer: {
-    flex: 1.5,
+    flex: 2,
   }, 
   pickerContainer: {
-    flex: 5
+    flex: 4
   },
   pickerTitle: {
     flex: 1, 

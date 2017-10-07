@@ -21,7 +21,7 @@ const Fridge = StackNavigator({
         <Button 
           title='Add an item!' 
           onPress={() => {
-            navigation.navigate('AddItem', {backgroundColor: 'white'});
+            navigation.navigate('AddItem', {backgroundColor: '#3c85ca'});
           }} 
         />
       )
