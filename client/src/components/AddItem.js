@@ -45,6 +45,8 @@ class AddItem extends React.Component {
     let category = this.props.navigation.state.params.category;
     if (category === 'grains') {
       category = 'grain';
+    } else if (!category) {
+      category = 'new item';
     } else if (category !== 'protein') {
       category += ' item';
     }
