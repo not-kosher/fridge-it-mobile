@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import { Image } from 'react-native'
+import { Image, Button } from 'react-native'
 
 import FridgeView from './FridgeView'
 import CategoryView from './CategoryView'
@@ -15,7 +15,18 @@ const Logo = (
 );
 
 const Fridge = StackNavigator({
-  FridgeView: { screen: FridgeView },
+  FridgeView: { screen: FridgeView, 
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: (
+        <Button 
+          title='Add an item!' 
+          onPress={() => {
+            navigation.navigate('AddItem', {backgroundColor: '#3c85ca'});
+          }} 
+        />
+      )
+    })
+  },
   CategoryView: { screen: CategoryView },
   AddItem: {screen: AddItem}
 }, {
