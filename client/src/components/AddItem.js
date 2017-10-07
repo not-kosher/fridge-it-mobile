@@ -184,7 +184,8 @@ let styles = {
     marginBottom: 30,
     width: 180,
     alignItems: 'center',
-    backgroundColor: '#4c4c4c40'
+    backgroundColor: '#4c4c4c40',
+    borderRadius: 5
   },
   buttonText: {
     padding: 20,

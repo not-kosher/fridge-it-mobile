@@ -69,7 +69,6 @@ class CategoryView extends Component {
   }
 };
 
-const darkText = '#00000099';
 const lightText = '#ffffff';
 
 const styles = {
@@ -77,7 +76,8 @@ const styles = {
     alignSelf: 'center',
     width: 180,
     alignItems: 'center',
-    backgroundColor: '#4c4c4c40'
+    backgroundColor: '#4c4c4c40',
+    borderRadius: 5
   },
   buttonText: {
     padding: 20,
