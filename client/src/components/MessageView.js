@@ -26,7 +26,7 @@ class MessageView extends Component {
           <ScrollView>
             {this.props.messageList.length > 0 ? 
               this.props.messageList.map((message) => (
-                <MessageEntry message={message} />
+                <MessageEntry key={message.id} message={message} />
               ))
               : 
               <Text style={styles.emptyText}>Your message board is empty</Text>
@@ -51,6 +51,7 @@ const styles = {
     flex: 5
   },
   emptyText: {
+    alignSelf: 'center',
     fontSize: 20,
     color: '#000000b3'
   },
