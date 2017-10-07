@@ -126,7 +126,7 @@ const styles = {
   },
   text: {
     alignSelf: 'center',
-    color: '#00000099',
+    color: '#000000b3',
     fontSize: 18
   }
 

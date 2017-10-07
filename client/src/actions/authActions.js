@@ -1,4 +1,5 @@
 import firebase, { auth, googleProvider } from '../firebase/config.js';
+import { AsyncStorage } from 'react-native';
 
 // Google log in and sign up function from firebase docs. Stores relevant info onto the localStorage object.
 export const googleLogin = () => {
@@ -43,24 +44,23 @@ export const emailLogin = (email, pw, cb) => {
 };
 
 // Firebase log out function.  Removes all stored info from localStorage object.
-// export const logoutUser = () => {
-//   return function(dispatch) {
-//     auth.signOut()
-//       .then(() => {
-//         localStorage.removeItem('userid');
-//         localStorage.removeItem('name');
-//         localStorage.removeItem('fId');
-//         localStorage.removeItem('visitorId');
-//         // Calls on authReducers.js to create the new state.
-//         dispatch({type: 'USER_LOGOUT_FULFILLED'});
-//         location.reload();
-//       })
-//       .catch((error) => {
-//         alert(error.message);        
-//         dispatch({type: 'USER_LOGOUT_REJECTED', payload: error.message});
-//       });
-//   };
-// };
+export const logoutUser = () => {
+  return function(dispatch) {
+    auth.signOut()
+      .then(() => {
+        return AsyncStorage.multiRemove(['username', 'userId'])
+      })
+      .then(() => {
+        // Calls on authReducers and fridgeReducers to create the new state
+        dispatch({type: 'USER_LOGOUT_FULFILLED'});
+        dispatch({type: 'CLEAR_FRIDGE'});
+      })
+      .catch((error) => {
+        console.log('Error logging out', error);      
+        dispatch({type: 'USER_LOGOUT_REJECTED', payload: error.message});
+      });
+  };
+};
 
 // Email sign up function. Stores relevant info onto the localStorage object.
 export const emailSignUp = (email, pw, cb) => {

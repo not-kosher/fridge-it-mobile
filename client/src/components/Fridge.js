@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
-import { StackNavigator, } from 'react-navigation';
-import {
-  Button,
-  View,
-  Image,
-  Text,
-} from 'react-native'
+import { StackNavigator } from 'react-navigation';
+import { Image } from 'react-native'
 
 import FridgeView from './FridgeView'
 import CategoryView from './CategoryView'
 import AddItem from './AddItem'
+import Logout from './Logout';
+
+const Logo = (
+  <Image 
+    source={require('../images/logo.png')} 
+    style={{height: 40, width: 40, paddingBottom: 2}} 
+  />
+);
 
 const Fridge = StackNavigator({
   FridgeView: { screen: FridgeView },
   CategoryView: { screen: CategoryView },
   AddItem: {screen: AddItem}
-})
+}, {
+  initialRouteParams: {
+    something: 'something'
+  },
+  navigationOptions: (props) => ({
+      headerTitle: Logo,
+      headerRight: (<Logout />),
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomColor: 'white'
+      }
+    })
+  },
+);
 
 export default Fridge;

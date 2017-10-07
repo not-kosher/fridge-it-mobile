@@ -40,6 +40,14 @@ const fridgeReducer = (state=initialState, action) => {
         fridge: action.payload
       })
     }
+
+    case 'CLEAR_FRIDGE': {
+      return Object.assign({}, state, {
+        fetched: false,
+        posted: false,
+        fridge: {},
+      })
+    }
     
     default: {
       return state;
