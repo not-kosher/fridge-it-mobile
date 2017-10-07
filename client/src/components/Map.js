@@ -9,23 +9,67 @@ import {
 var MapView = require('react-native-maps');
 
 class Home extends Component{
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      latitude: null,
+      longitude: null,
+      latitudeDelta: null,
+      error: null,
+      isReady: false,
+    };
   }
+
+  componentWillMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+          error: null,
+          isReady: true,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-      <MapView
-      style={styles.map}
-      initialRegion={{
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
-    />
+
+    if (this.state.isReady !== false) {
+      
+      return (
+        <View style={styles.container}>
+        <Text>Latitude: {this.state.latitude}</Text>
+        <Text>Longitude: {this.state.longitude}</Text>
+        <MapView
+        style={styles.map}
+        showsUserLocation={ true }
+        initialRegion={{
+          latitude: this.state.latitude,
+          longitude: this.state.longitude,
+          latitudeDelta: this.state.latitudeDelta,
+          longitudeDelta: this.state.longitudeDelta
+        }}  
+      /> 
+
+        </View>
+      )
+    } else {
+      return (
+        <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Latitude: {this.state.latitude}</Text>
+        <Text>Longitude: {this.state.longitude}</Text>
+        <Text>LongitudeD: {this.state.latitudeDelta}</Text>
+        {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
       </View>
-    )
+      )
+    }
   }
  }
 
