@@ -5,9 +5,12 @@ import {
 } from 'react-native';
 import { PacmanIndicator } from 'react-native-indicators'
 
+import MessageEntry from './MessageEntry';
+import * as messageActions from '../actions/messageActions';
+
 class MessageView extends Component {
   componentWillMount() {
-
+    this.props.messageActions.fetchMessages(this.props.fridge.id);
   }
 
   render() {
@@ -21,11 +24,30 @@ class MessageView extends Component {
           <Text>Your messages</Text>
         </View>
         <View>
-          
+        {this.props.messageList.length > 0 ? 
+          this.props.messageList.map((message) => (
+            <MessageEntry message={message} />
+          ))
+          : 
+          <Text>Your message board is empty</Text>
+        }
         </View>
       </View>
     );
   }
 } 
 
-export default MessageView;
+const messageState = (store) => {
+  return {
+    fridge: store.fridge.fridge,
+    messageList: store.message.messages
+  }
+};
+
+const messageDispatch = (dispatch) => {
+  return {
+    messageActions: bindActionCreators(messageActions, dispatch)
+  }
+};
+
+export default connect(messageState, messageDispatch)(MessageView);
