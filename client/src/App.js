@@ -73,19 +73,17 @@ class App extends React.Component {
   }
 
   render () {
-    //if !this.state.isReady then return loading screen
-    // if (!this.state.isReady) {
-    //   return (
-    //     <Loading />
-    //   );
-    // }
+    if (!this.state.isReady) {
+      return (
+        <Loading />
+      );
+    }
 
-    // //CHANGE TO CHECK FOR FRIDGE, ALSO INCLUDE FRIDGE ON PROPS BELOW
-    // if (this.props.fridgeName) {
-    //   return (
-    //     <Fridge />
-    //   );
-    // }
+    if (this.props.fridgeName) {
+      return (
+        <Fridge />
+      );
+    }
 
     return (
       <Login successfulLogin={this.successfulLogin} />
