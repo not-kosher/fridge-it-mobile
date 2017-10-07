@@ -24,10 +24,8 @@ class CategoryView extends Component {
   };
 
   componentWillMount() {
-    this.props.fridgeActions.getFridge(this.props.username, () => {
-      this.props.itemActions.getItems(this.props.fridge.id, () => {
-        this.filterItems(this.props.navigation.state.params.category)
-      })
+    this.props.itemActions.getItems(this.props.fridge.id, () => {
+      this.filterItems(this.props.navigation.state.params.category)
     })
   };
 
