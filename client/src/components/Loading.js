@@ -6,7 +6,10 @@ import {
 import { PacmanIndicator } from 'react-native-indicators'
 
 const Loading = () => (
-  <PacmanIndicator color='rgb(100, 200, 240)'/>
+  <PacmanIndicator 
+    color='rgb(46, 145, 212)'
+    size={120}
+  />
 );
 
 export default Loading;
