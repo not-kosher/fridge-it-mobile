@@ -8,7 +8,8 @@ import {
   View,
   Text,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 import CustomTextInput from './CustomTextInput.js';
@@ -46,13 +47,18 @@ const Login = (props) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity 
             onPress={() => {
+              if (!props.emailValue || !props.passwordValue) {
+                Alert.alert('Failed Login', 'Please enter email and password', {text: 'OK', onPress: () => console.log('pressed ok')});
+              } else {
                 props.authActions.emailLogin(props.emailValue, props.passwordValue, (err, user) => {
-                if (err) {
-                  console.log(err);
-                } else {
-                  props.successfulLogin(user);
-                }
-              })
+                  if (err) {
+                    console.log(err);
+                    Alert.alert('Failed Login', err, [{text: 'OK', onPress: () => console.log('pressed ok')}]);
+                  } else {
+                    props.successfulLogin(user);
+                  }
+                });
+              }
             }}
             style={{...styles.buttonWrapper, ...styles.login}}  
           >
@@ -63,18 +69,24 @@ const Login = (props) => {
 
           <TouchableOpacity 
             onPress={() => {
-              props.authActions.emailSignUp(props.emailValue, props.passwordValue, (err, user) => {
-                if (err) {
-                  console.log(err);
-                } else {
-                  props.successfulLogin(user);
-                }
-              })
+              if (!props.emailValue || !props.passwordValue) {
+                Alert.alert('Failed Sign up', 'Please enter email and password', {text: 'OK', onPress: () => console.log('pressed ok')});
+              } else {              
+                props.authActions.emailSignUp(props.emailValue, props.passwordValue, (err, user) => {
+                  if (err) {
+                    console.log(err);
+                    Alert.alert('Failed Sign up', err, [{text: 'OK', onPress: () => console.log('pressed ok')}]);
+
+                  } else {
+                    props.successfulLogin(user);
+                  }
+                })
+              }
             }}
             style={{...styles.buttonWrapper, ...styles.signUp}}
           >
             <View style={styles.button}>
-              <Text style={styles.buttonText}>Sign Up</Text>
+              <Text style={styles.buttonText}>Sign up</Text>
             </View>
           </TouchableOpacity>
         </View>
