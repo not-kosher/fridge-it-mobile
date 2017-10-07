@@ -55,4 +55,5 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
+<key>NSLocationWhenInUseUsageDescription</key>
 </plist>
