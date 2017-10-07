@@ -12,8 +12,9 @@ import {
 } from 'react-native';
 
 import Login from './components/LogIn.js';
-import Fridge from './components/Fridge.js';
 import Loading from './components/Loading.js';
+// import Fridge from './components/Fridge.js';
+import Tabs from './components/Tabs';
 
 class App extends React.Component {
   constructor(props) {
@@ -83,7 +84,7 @@ class App extends React.Component {
 
     if (this.props.fridgeName) {
       return (
-        <Fridge />
+        <Tabs />
       );
     }
 
