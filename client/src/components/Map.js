@@ -41,26 +41,26 @@ class Map extends Component{
 
   render() {
 
-    if (this.state.isReady !== false) {
+    // if (this.state.isReady !== false) {
       
-      return (
-        <View style={styles.container}>
-        <Text>Latitude: {this.state.latitude}</Text>
-        <Text>Longitude: {this.state.longitude}</Text>
-        <MapView
-        style={styles.map}
-        showsUserLocation={ true }
-        initialRegion={{
-          latitude: this.state.latitude,
-          longitude: this.state.longitude,
-          latitudeDelta: this.state.latitudeDelta,
-          longitudeDelta: this.state.longitudeDelta
-        }}  
-      /> 
+    //   return (
+    //     <View style={styles.container}>
+    //     <Text>Latitude: {this.state.latitude}</Text>
+    //     <Text>Longitude: {this.state.longitude}</Text>
+    //     <MapView
+    //     style={styles.map}
+    //     showsUserLocation={ true }
+    //     initialRegion={{
+    //       latitude: this.state.latitude,
+    //       longitude: this.state.longitude,
+    //       latitudeDelta: this.state.latitudeDelta,
+    //       longitudeDelta: this.state.longitudeDelta
+    //     }}  
+    //   /> 
 
-        </View>
-      )
-    } else {
+    //     </View>
+    //   )
+    // } else {
       return (
         <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Latitude: {this.state.latitude}</Text>
@@ -69,7 +69,7 @@ class Map extends Component{
         {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
       </View>
       )
-    }
+    // }
   }
  }
 
