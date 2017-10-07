@@ -41,7 +41,7 @@ const Tabs = TabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
+      activeTintColor: '#e91e63'
     },
   }
 );
