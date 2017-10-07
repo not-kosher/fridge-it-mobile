@@ -13,7 +13,6 @@ const Logo = (
     style={{height: 40, width: 40, paddingBottom: 2}} 
   />
 );
-import Home from './Map'
 
 import GeolocationExample from './Geolocation'
 
@@ -33,8 +32,6 @@ const Fridge = StackNavigator(
     },
     CategoryView: { screen: CategoryView },
     AddItem: {screen: AddItem},
-    Map: {screen: Home},
-    GeolocationExample: {screen: GeolocationExample}
   }, 
   {
     initialRouteParams: {

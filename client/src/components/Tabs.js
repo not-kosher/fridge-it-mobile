@@ -5,6 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import Fridge from './Fridge';
 import MessageView from './MessageView';
+import Map from './Map'
 
 Fridge.navigationOptions = {
   tabBarLabel: 'My Fridge',
@@ -28,6 +29,17 @@ MessageView.navigationOptions = {
   ),
 };
 
+Map.navigationOptions = {
+  tabBarLabel: 'Map',
+  tabBarIcon: ({ tintColor, focused }) => (
+    <MaterialCommunityIcons
+      name={focused ? 'map-marker-radius' : 'map-marker-outline'}
+      size={26}
+      style={{ color: tintColor }}
+    />
+  ),
+};
+
 const Tabs = TabNavigator(
   {
     Home: {
@@ -38,6 +50,10 @@ const Tabs = TabNavigator(
       screen: MessageView,
       path: 'messages',
     },
+    Map: {
+      screen: Map,
+      path: 'map'
+    }
   },
   {
     tabBarOptions: {

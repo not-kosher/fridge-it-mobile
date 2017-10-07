@@ -29,9 +29,7 @@ class FridgeView extends Component {
         </View>
       </TouchableOpacity>
       <View style={styles.shelf}>
-      <TouchableOpacity style={{flex: 1}} onPress={() => navigate('Map', {category: 'protein', backgroundColor: '#FC7E7E'})}>
-
-        {/* <TouchableOpacity style={{flex: 1}} onPress={() => navigate('CategoryView', {category: 'protein', backgroundColor: '#FC7E7E'})}> */}
+        <TouchableOpacity style={{flex: 1}} onPress={() => navigate('CategoryView', {category: 'protein', backgroundColor: '#FC7E7E'})}>
           <View style={{...styles.catergoryView, ...styles.proteinView}}>
             <Image
               style={styles.image}
