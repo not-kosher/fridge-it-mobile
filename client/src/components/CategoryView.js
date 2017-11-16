@@ -6,6 +6,7 @@ import {
   View,
   Image,
   Text,
+  TouchableOpacity
 } from 'react-native'
 
 import * as fridgeActions from '../actions/fridgeActions';
@@ -23,10 +24,8 @@ class CategoryView extends Component {
   };
 
   componentWillMount() {
-    this.props.fridgeActions.getFridge(this.props.username, () => {
-      this.props.itemActions.getItems(this.props.fridge.id, () => {
-        this.filterItems(this.props.navigation.state.params.category)
-      })
+    this.props.itemActions.getItems(this.props.fridge.id, () => {
+      this.filterItems(this.props.navigation.state.params.category)
     })
   };
 
@@ -58,17 +57,34 @@ class CategoryView extends Component {
           edit={this.editItem}
           food={filteredFoodItems} 
           category={this.props.navigation.state.params.category}/>
-          <Button
-            title='Add an item!'
-            onPress={() => navigate('AddItem', this.props.navigation.state.params)}
-          />
+          <View style={{flex: 1, backgroundColor: this.props.navigation.state.params.backgroundColor, justifyContent: 'center'}}>
+            <TouchableOpacity onPress={() => navigate('AddItem', this.props.navigation.state.params)}>
+              <View style={styles.button}>
+                <Text style={styles.buttonText}>Add an item!</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
       </View>
     )
   }
 };
 
-const Styles = {
- 
+const lightText = '#ffffff';
+
+const styles = {
+  button: {
+    alignSelf: 'center',
+    width: 180,
+    alignItems: 'center',
+    backgroundColor: '#4c4c4c40',
+    borderRadius: 5
+  },
+  buttonText: {
+    padding: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: lightText
+  }
 }
 
 const fridgeState = (store) => {

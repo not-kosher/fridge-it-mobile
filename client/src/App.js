@@ -12,8 +12,9 @@ import {
 } from 'react-native';
 
 import Login from './components/LogIn.js';
-import Fridge from './components/Fridge.js';
 import Loading from './components/Loading.js';
+// import Fridge from './components/Fridge.js';
+import Tabs from './components/Tabs';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,16 +28,24 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    AsyncStorage.multiGet(['username', 'userId'])
-      .then(data => {
-        if (data[0][1] !== null) {
-          console.log('found a user in asynstore');
-          //set the gloabal username and userId from the AsynStorage
-          this.props.itemActions.setUser(data[0][1], data[1][1]);
-          this.getOrCreateFridge(data[0][1]);
-        } 
-      })
-      .catch(err => console.log('error with asynstore: ', err));
+    setTimeout(() => {
+      AsyncStorage.multiGet(['username', 'userId'])
+        .then(data => {
+          if (data[0][1] !== null) {
+            //set the gloabal username and userId from the AsynStorage
+            this.props.authActions.setUser(data[0][1], data[1][1]);
+            this.getOrCreateFridge(data[0][1]);
+          } else {
+            this.setState({isReady: true});
+          }
+        })
+        .catch(err => {
+          console.log('error with asynstore: ', err);
+          Alert.alert('Could not get user from storage', err, [
+            {text: 'OK', onPress: () => console.log('pressed ok')}
+          ]);
+        })
+      }, 3000);
   }
 
   successfulLogin(user) {
@@ -44,7 +53,7 @@ class App extends React.Component {
       ['username', user.username], ['userId', user.userId]
     ]); 
 
-    this.props.itemActions.setUser(user.username, user.userId);
+    this.props.authActions.setUser(user.username, user.userId);
     this.getOrCreateFridge(user.username);
   }
 
@@ -71,17 +80,15 @@ class App extends React.Component {
   }
 
   render () {
-    //if !this.state.isReady then return loading screen
     if (!this.state.isReady) {
       return (
         <Loading />
       );
     }
 
-    //CHANGE TO CHECK FOR FRIDGE, ALSO INCLUDE FRIDGE ON PROPS BELOW
     if (this.props.fridgeName) {
       return (
-        <Fridge />
+        <Tabs />
       );
     }
 
@@ -102,7 +109,7 @@ const AppState = (store) => {
 
 const AppDispatch = (dispatch) => {
   return {
-    itemActions: bindActionCreators(authActions, dispatch),
+    authActions: bindActionCreators(authActions, dispatch),
     fridgeActions: bindActionCreators(fridgeActions, dispatch)
   }
 };

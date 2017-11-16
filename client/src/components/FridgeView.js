@@ -9,7 +9,6 @@ import {
 
 
 
-
 class FridgeView extends Component {
   constructor(props) {
     super(props)
@@ -105,7 +104,7 @@ const styles = {
   },
   frozenView: {
     flex: 1,
-    marginTop: 6,
+    // marginTop: 6,
     backgroundColor: '#bad5dd'
   },
   proteinView: {

@@ -24,7 +24,7 @@ const authReducer = (state=initialState, action) => {
     }
 
     case 'USER_LOGOUT_FULFILLED': {
-      return Object.assign({}, state, {loggedIn: false, username: ''});
+      return Object.assign({}, state, {loggedIn: false, username: '', userId: ''});
     }
 
     case 'USER_LOGOUT_REJECTED': {
